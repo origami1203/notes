@@ -28,7 +28,7 @@ systemctl status docker
 
 5. 配置国内加速
 
-```
+```sh
 vim  /etc/docker/daemon.json
 
 # 镜像信息
@@ -81,7 +81,7 @@ docker ps -a
 >
 > 以后用后文的启、停、删就可以操作该容器了.
 
-```
+```shell
 # eg: \是换行的意思
 docker run -d -p 1337:1337 \
         --network kong-net \
