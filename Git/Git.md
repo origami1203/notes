@@ -1,5 +1,17 @@
 # Git
 
+### git乱码
+
+```sh
+$ git config --global core.quotepath false # 设置 git status utf-8编码
+
+$ git config --global gui.encoding utf-8 # 设置Git GUI界面utf-8编码
+
+$ git config --global i18n.commit.encoding utf-8 #设置commit信息utf-8编码
+
+$ git config --global i18n.logoutputencoding utf-8 # 设置输出 log utf-8 编码
+```
+
 ### 命令行操作
 
  ```properties
