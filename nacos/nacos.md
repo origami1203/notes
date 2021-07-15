@@ -1,5 +1,3 @@
-
-
 ### 下载与安装
 
 ##### 拉取镜像
@@ -22,6 +20,7 @@ server.servlet.contextPath=/nacos
 server.port=8848
 spring.datasource.platform=mysql
 
+# 可以配置多个数据库
 db.num=1
 # 这里要对应ip，以及对应的数据库
 db.url.0=jdbc:mysql://172.18.0.4:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
@@ -269,6 +268,12 @@ docker run --name nacos -p 8848:8848   \
 
 访问 ip:port/nacos，默认账号密码nacos/nacos
 
+默认集群方式启动，若要以单机模式打开
+
+```sh
+startup.sh -m standalone
+```
+
 ### 整合
 
 依赖管理
@@ -324,5 +329,20 @@ spring:
         # nacos服务发现与配置的地址
         server-addr:  127.0.0.1:8848
         namespace: c845e96f-4423-4618-8c26-5e4d510f566a
+```
+
+### 集群
+
+![img](https://s5.51cto.com/oss/202103/10/39732ecbdceb071dbfb394fe5cc6b717.png-wh_600x-s_630132211.png)
+
+单机模式容易出现单点故障，不适合生产环境
+
+将conf目录下的cluster.conf.example copy一份并改为cluster.conf
+
+```properties
+# 配置集群
+192.168.1.1:8848
+192.168.1.2:8848
+192.168.1.3:8848
 ```
 

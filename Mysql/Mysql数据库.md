@@ -109,7 +109,7 @@ int(5)，后面的数据表示要显示的位数
 	- 查看当前数据库内所有数据表
 
 	```mysql
-SHOW TABLES;
+	SHOW TABLES;
 	```
 
 	- 查询表结构
@@ -118,17 +118,14 @@ SHOW TABLES;
 
 	- 创建数据表
     
-        - ```mysql
-          CREATE TABLE 表名 (
-	        列名1 列数据类型1,
-            列名2 列数据类型2,
-	        ......
-             列名n 列数据类型n
-	    )ENGINE=innodb DEFALUT CHARSET= utf8;
-	  
-	    ```
-	  
-	    ```
+    ```mysql
+    CREATE TABLE 表名 (
+	    列名1 列数据类型1,
+        列名2 列数据类型2,
+	    ......
+         列名n 列数据类型n
+	       )ENGINE=innodb DEFALUT CHARSET= utf8;
+	  ```
 	>    注意  : 最后一个列不要加逗号
 	
 - 复制表
@@ -257,7 +254,7 @@ SHOW TABLES;
         	字段1 AS 别名,
         	字段2 AS 别名,
         	字段3 AS 别名,
-  	字段2 + 字段3 AS 别名
+  	    字段2 + 字段3 AS 别名
         FROM
         	表名;
         ```
@@ -383,7 +380,7 @@ SHOW TABLES;
     CREATE TABLE stu(
         id INT,
       name VARCHAR(20) NOT NULL
-  );
+    );
     ```
     
     
@@ -394,18 +391,18 @@ SHOW TABLES;
 	- 使用修改ALERT将列属性中的约束NOT NULL删去即可
 	- ALTER TABLE 
         stu 
-MODIFY 
+  MODIFY 
         name VARCHAR(20);
-此即为删除name上的非空约束
+  此即为删除name上的非空约束
 
 - 创建表后添加约束
 
 	- 使用修改ALERT将列重新属性,添加约束即可
 	- ALTER TABLE 
         stu 
-MODIFY 
+  MODIFY 
         name VARCHAR(20) NOT NULL;
-此即为给name列添加非空约束
+  此即为给name列添加非空约束
 
 ##### 唯一约束
 
@@ -423,7 +420,7 @@ MODIFY
     CREATE TABLE stu(
         id INT UNIQUE,
       name VARCHAR(20)
-  );
+    );
     ```
     
     
@@ -434,18 +431,18 @@ MODIFY
 	- 使用ALERT和DROP INDEX删除
 	- ALTER TABLE 
         stu 
-DROP INDEX 
+  DROP INDEX 
         id;
-此即为删除id上的唯一约束
+  此即为删除id上的唯一约束
 
 - 创建表后添加约束
 
 	- 使用修改ALERT将列重新属性,添加约束即可
 	- ALTER TABLE 
         stu 
-MODIFY 
+  MODIFY 
         id INT UNIQUE;
-此即为给name列添加唯一约束
+  此即为给name列添加唯一约束
 
 ##### 主键约束
 
@@ -479,21 +476,21 @@ MODIFY
 	- 使用修改ALERT和DROP PRIMARY删去即可
 	- ALTER TABLE 
         stu 
-DROP
+  DROP
         PRIMARY KEY;
-此即为删除stu表中主键约束(因为一个表只有一个主键,所有不用指定列
+  此即为删除stu表中主键约束(因为一个表只有一个主键,所有不用指定列
 
 - 创建表后添加主键约束
 
 	- ALTER TABLE 
         stu 
-MODIFY 
+  MODIFY 
         id INT PRIMARY KEY;
-此即为给id列添加唯一约束
+  此即为给id列添加唯一约束
 	- ALTER TABLE 
         Stu 
-ADD PRIMARY KEY(id);
-给id列添加主键
+  ADD PRIMARY KEY(id);
+  给id列添加主键
 
 ##### 自增长
 
@@ -506,20 +503,20 @@ ADD PRIMARY KEY(id);
 	- CREATE TABLE stu(
         id INT PRIMARY KEY AUTO_INCREMENT,-
         name VARCHAR(20)
-);
+  );
 
 - 创建表后添加自增长
 
 	- ALTER TABLE
         Stu 
-MODIFY 
+  MODIFY 
         id INT AUTO INCREMENT;
 
 - 删除自增长
 
 	- ALTER TABLE 
         stu 
-MODIFY 
+    MODIFY 
          id INT;
 
 ##### 外键约束
@@ -530,20 +527,20 @@ MODIFY
         ......
         外键列,
         CONSTRAINT 外键名称 FOREIGN KEY(本表外键列名称) REFERENCES 主表名称(主表列名称,一般为主键列)
-);
+  );
 
 - 删除外键
 
 	- ALTER TABLE 
         表名
-DROP FOREIGNKEY 外键名称；
+  DROP FOREIGNKEY 外键名称；
 
 - 添加外键
 
 	- ALTER TABLE 
         表名
-ADD
-CONSTRAINT  外键名称  FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
+  ADD
+  CONSTRAINT  外键名称  FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
 
 - 级联操作
 
