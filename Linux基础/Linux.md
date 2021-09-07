@@ -712,8 +712,6 @@ dos2unix 文件名可将windows下的脚本转换为linux下的脚本，两者�
 systemctl status/enable/disable/start、stop firewalld  查看/开机自启/禁止自启/启动/停止  
 ```
 
-
-
 查看开放的端口号
 
 ```shell
@@ -776,7 +774,7 @@ export PATH=$PATH:/home/uusama/mysql/bin
 
 * 方式三
 
-和修改`~/.bashrc`文件类似，也是要在文件最后加上新的路径即可：
+  和修改`~/.bashrc`文件类似，也是要在文件最后加上新的路径即可：
 
 ```shell
 vim ~/.bash_profile

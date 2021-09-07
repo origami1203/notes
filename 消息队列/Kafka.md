@@ -123,3 +123,37 @@ spring:
 | 1         | 适中           | 适中       | 一般场景即可                                                 |
 | all 或一1 | 最差           | 最高       | 不能容忍消息丢失                                             |
 
+spring boot
+
+```java
+@Configuration
+@EnableKafka
+public class KafkaConfig {
+
+    @Bean
+    KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>>
+                        kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
+                                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        // 并发数，若有三个分区，只有一个消费者，则会启动三个线程处理，若有三个消费者，每个消费者处理一个分区， 
+        factory.setConcurrency(3);
+        factory.getContainerProperties().setPollTimeout(3000);
+        return factory;
+    }
+
+    @Bean
+    public ConsumerFactory<Integer, String> consumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
+    }
+
+    @Bean
+    public Map<String, Object> consumerConfigs() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, embeddedKafka.getBrokersAsString());
+        ...
+        return props;
+    }
+}
+```
+
