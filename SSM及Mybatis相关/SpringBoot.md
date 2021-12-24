@@ -340,8 +340,6 @@ Spring Boot可以使用外部配置，以便可以在不同环境中使用相同
 
 9. ==jar包内部的application.properties或application.yml（不带pring.profile）配置文件==
 
-
-
 10. @Configuration注解类上的@PropertySource
 2. 通过SpringApplication.setDefaultProperties指定的默认属性
 
@@ -1393,4 +1391,21 @@ public class OrderService implements ApplicationEventPublisherAware {
 
 也可使用``@EventListener`注解来标注到方法上，不用继承`ApplicationListener`，还可设置条件。`Order`可设置优先级。
 
-监听事件，默认是同步的，`@EnableAsync`到配置类，``@Async`到监听方法上，可异步多线程。
+监听事件，默认是同步的，`@EnableAsync`到配置类，`@Async`到监听方法上，可异步多线程。
+
+### bean的生命周期
+
+```mermaid
+graph TD
+A(实例化-调用构造方法) --> B(设置对象属性-set注入)
+B --> C(调用BeanNameAware的setBeanName方法)
+C-->D(调用BeanFactoryAware的setBeanFactory方法)
+D-->E(调用ApplicationContextAware的setApplicationContet方法)
+E-->F(调用BeanPostProcessor的前初始化方法)
+F-->G(调用InitializingBean的afterPropertiesSet方法)
+G-->H(调用初始化方法init-method或PostConstruct)
+H-->I(调用BeanPostProcessor的后初始化方法)
+I-->J(ioc容器缓存--单例模式的bean)
+J-->K(调用DisposableBean接口destory方法 destory-method)
+```
+

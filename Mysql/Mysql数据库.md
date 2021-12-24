@@ -391,18 +391,18 @@ int(5)，后面的数据表示要显示的位数
 	- 使用修改ALERT将列属性中的约束NOT NULL删去即可
 	- ALTER TABLE 
         stu 
-  MODIFY 
+    MODIFY 
         name VARCHAR(20);
-  此即为删除name上的非空约束
+    此即为删除name上的非空约束
 
 - 创建表后添加约束
 
 	- 使用修改ALERT将列重新属性,添加约束即可
 	- ALTER TABLE 
         stu 
-  MODIFY 
+    MODIFY 
         name VARCHAR(20) NOT NULL;
-  此即为给name列添加非空约束
+    此即为给name列添加非空约束
 
 ##### 唯一约束
 
@@ -431,18 +431,18 @@ int(5)，后面的数据表示要显示的位数
 	- 使用ALERT和DROP INDEX删除
 	- ALTER TABLE 
         stu 
-  DROP INDEX 
+    DROP INDEX 
         id;
-  此即为删除id上的唯一约束
+    此即为删除id上的唯一约束
 
 - 创建表后添加约束
 
 	- 使用修改ALERT将列重新属性,添加约束即可
 	- ALTER TABLE 
         stu 
-  MODIFY 
+    MODIFY 
         id INT UNIQUE;
-  此即为给name列添加唯一约束
+    此即为给name列添加唯一约束
 
 ##### 主键约束
 
@@ -476,21 +476,21 @@ int(5)，后面的数据表示要显示的位数
 	- 使用修改ALERT和DROP PRIMARY删去即可
 	- ALTER TABLE 
         stu 
-  DROP
+    DROP
         PRIMARY KEY;
-  此即为删除stu表中主键约束(因为一个表只有一个主键,所有不用指定列
+    此即为删除stu表中主键约束(因为一个表只有一个主键,所有不用指定列
 
 - 创建表后添加主键约束
 
 	- ALTER TABLE 
         stu 
-  MODIFY 
+    MODIFY 
         id INT PRIMARY KEY;
-  此即为给id列添加唯一约束
+    此即为给id列添加唯一约束
 	- ALTER TABLE 
         Stu 
-  ADD PRIMARY KEY(id);
-  给id列添加主键
+    ADD PRIMARY KEY(id);
+    给id列添加主键
 
 ##### 自增长
 
@@ -503,13 +503,13 @@ int(5)，后面的数据表示要显示的位数
 	- CREATE TABLE stu(
         id INT PRIMARY KEY AUTO_INCREMENT,-
         name VARCHAR(20)
-  );
+    );
 
 - 创建表后添加自增长
 
 	- ALTER TABLE
         Stu 
-  MODIFY 
+    MODIFY 
         id INT AUTO INCREMENT;
 
 - 删除自增长
@@ -527,20 +527,20 @@ int(5)，后面的数据表示要显示的位数
         ......
         外键列,
         CONSTRAINT 外键名称 FOREIGN KEY(本表外键列名称) REFERENCES 主表名称(主表列名称,一般为主键列)
-  );
+    );
 
 - 删除外键
 
 	- ALTER TABLE 
         表名
-  DROP FOREIGNKEY 外键名称；
+    DROP FOREIGNKEY 外键名称；
 
 - 添加外键
 
 	- ALTER TABLE 
         表名
-  ADD
-  CONSTRAINT  外键名称  FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
+    ADD
+    CONSTRAINT  外键名称  FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
 
 - 级联操作
 
@@ -669,8 +669,27 @@ ON DELETE CASCADE
 
 - 隔离级别的设置(不常用)
 
-	- set global transaction isolation level级别字符串；设置隔离界别
-	- select @@tx_isolation; 查询隔离级别
+	- `set global transaction isolation level 级别字符串`；设置隔离界别
+	- `select @@tx_isolation;` 查询隔离级别
+
+> 数据库锁与ORM乐观悲观锁
+>
+> 默认RR隔离级别下，使用select语句不会加锁，`select... for update`会加锁，update、delete、insert默认会加锁，被锁记录不允许两个事务同时写，先抢到的获取锁，没抢到的阻塞，先抢到锁的事务提交释放锁后，另一个事务才会执行写操作。
+
+|                          事务1                          |                            事务2                             |
+| :-----------------------------------------------------: | :----------------------------------------------------------: |
+|                        开启事务                         |                           开启事务                           |
+| select * from user where id = 1<br />id = 1,money = 100 |                                                              |
+|         update user set money = 200 where id =1         | select * from user where id = 1<br />id = 1,money = 100(快照读) |
+|                                                         |                                                              |
+|                                                         |                                                              |
+|                                                         |                                                              |
+|                                                         |                                                              |
+|                                                         |                                                              |
+|                                                         |                                                              |
+|                                                         |                                                              |
+
+
 
 ### 判断语句
 

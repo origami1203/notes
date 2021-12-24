@@ -595,7 +595,7 @@ sentinel monitor 任意名字 主机ip 主机端口 需要的投票数
 
 ```shell
 redis-sentinel 哨兵配置文件的位置;
-redis-sentinel redis sentinel.conf
+redis-sentinel redis_sentinel.conf
 ```
 
 一般还会配置多哨兵，以防哨兵宕机，可以在哨兵的配置文件进行配置端口，开启多个哨兵，还有转移时间等可以进行配置。
@@ -652,7 +652,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    public Cachelanager cacheManager(RedisConnectionFactory factory){
+    public CacheManager cacheManager(RedisConnectionFactory factory){
         RedisSerializer<String) redisSerializer = new StringRedisSerializer()；
             Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new
             Jackson2JsonRedisSerializer(Object.class);I
@@ -679,7 +679,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 >   @Cacheable
 
-常用于查询方法上，若游缓存，将缓存中的结果返回，若没有此缓存，查询数据库，并将结果放入缓存中。
+常用于查询方法上，若有缓存，将缓存中的结果返回，若没有此缓存，查询数据库，并将结果放入缓存中。
 
 
 | 属性/方法名 | 解释                                             |

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab28798b-920d-4998-8327-bf701b950dc3" name="Default Changelist" comment="修正" />
+    <list default="true" id="ab28798b-920d-4998-8327-bf701b950dc3" name="Default Changelist" comment="更新" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +69,7 @@
       <workItem from="1626332660616" duration="78000" />
       <workItem from="1626398085408" duration="53000" />
       <workItem from="1628476569139" duration="65000" />
+      <workItem from="1630991419759" duration="151000" />
     </task>
     <task id="LOCAL-00001" summary="添加">
       <created>1626332692798</created>
@@ -84,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626332723478</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="更新">
+      <created>1630991541585</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1630991541585</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +113,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="添加" />
     <MESSAGE value="修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正" />
+    <MESSAGE value="更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新" />
   </component>
 </project>
